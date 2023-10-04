@@ -1,4 +1,4 @@
-# vscode-documaker project
+# my-documaker project
 
 # Running it
 
