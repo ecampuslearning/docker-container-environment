@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: "haircut_studio"
+      POSTGRES_USER: "postgres"
+    volumes:
+      - ./log-directory:/var/lib/postgresql
+  app:
+    build: ../
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      - DATASOURCE_HOST=db
+      - DATASOURCE_PORT=5432
+    depends_on:
+      - db
